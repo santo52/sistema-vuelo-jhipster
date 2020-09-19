@@ -8,8 +8,8 @@ import { NavDropdown } from './menu-components';
 
 export const EntitiesMenu = props => (
   <NavDropdown icon="th-list" name="Entities" id="entity-menu" style={{ maxHeight: '80vh', overflow: 'auto' }}>
-    <MenuItem icon="asterisk" to="/aeropuerto">
-      Aeropuerto
+    <MenuItem icon="asterisk" to="/avion">
+      Avion
     </MenuItem>
     <MenuItem icon="asterisk" to="/vuelo">
       Vuelo

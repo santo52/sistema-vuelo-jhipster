@@ -20,6 +20,7 @@ import aeropuerto, {
 import vuelo, {
   VueloState
 } from 'app/entities/vuelo/vuelo.reducer';
+import avion, { AvionState } from 'app/entities/avion/avion.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -34,6 +35,7 @@ export interface IRootState {
   readonly settings: SettingsState;
   readonly aeropuerto: AeropuertoState;
   readonly vuelo: VueloState;
+  readonly avion: AvionState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -50,6 +52,7 @@ const rootReducer = combineReducers<IRootState>({
   settings,
   aeropuerto,
   vuelo,
+  avion,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });
