@@ -7,6 +7,7 @@ import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import Aeropuerto from './aeropuerto';
 import Vuelo from './vuelo';
 import Avion from './avion';
+import Pasajeros from './pasajeros';
 const Routes = ({ match }) => (
   <div>
     <Switch>
