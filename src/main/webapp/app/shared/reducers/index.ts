@@ -16,6 +16,10 @@ import passwordReset, { PasswordResetState } from 'app/modules/account/password-
 import aeropuerto, {
   AeropuertoState
 } from 'app/entities/aeropuerto/aeropuerto.reducer';
+// prettier-ignore
+import vuelo, {
+  VueloState
+} from 'app/entities/vuelo/vuelo.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -29,6 +33,7 @@ export interface IRootState {
   readonly password: PasswordState;
   readonly settings: SettingsState;
   readonly aeropuerto: AeropuertoState;
+  readonly vuelo: VueloState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -44,6 +49,7 @@ const rootReducer = combineReducers<IRootState>({
   password,
   settings,
   aeropuerto,
+  vuelo,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });
