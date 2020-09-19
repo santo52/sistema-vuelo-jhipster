@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label } from 'reactstrap';
-import { AvFeedback, AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation';
+import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
 import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
@@ -76,6 +76,18 @@ export const PasajerosUpdate = (props: IPasajerosUpdateProps) => {
                   <AvInput id="pasajeros-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
+              <AvGroup>
+                <Label id="nombreLabel" for="pasajeros-nombre">
+                  Nombre
+                </Label>
+                <AvField id="pasajeros-nombre" type="text" name="nombre" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="apellidosLabel" for="pasajeros-apellidos">
+                  Apellidos
+                </Label>
+                <AvField id="pasajeros-apellidos" type="text" name="apellidos" />
+              </AvGroup>
               <AvGroup>
                 <Label for="pasajeros-vuelo">Vuelo</Label>
                 <AvInput id="pasajeros-vuelo" type="select" className="form-control" name="vuelo.id">

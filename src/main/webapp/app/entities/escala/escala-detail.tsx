@@ -41,6 +41,8 @@ export const EscalaDetail = (props: IEscalaDetailProps) => {
             <span id="suben_pasajeros">Suben Pasajeros</span>
           </dt>
           <dd>{escalaEntity.suben_pasajeros}</dd>
+          <dt>Vuelo</dt>
+          <dd>{escalaEntity.vuelo ? escalaEntity.vuelo.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/escala" replace color="info">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

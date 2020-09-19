@@ -25,6 +25,7 @@
     <include file="config/liquibase/changelog/20200919155843_added_entity_constraints_Pasajeros.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200919164530_added_entity_constraints_Programavuelo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200916011342_added_entity_constraints_Aeropuerto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200919173637_added_entity_constraints_Escala.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

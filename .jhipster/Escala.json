@@ -1,7 +1,15 @@
 {
   "fluentMethods": true,
   "clientRootFolder": "",
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipName": "vuelo",
+      "otherEntityName": "vuelo",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "escala"
+    }
+  ],
   "fields": [
     {
       "fieldName": "id_escala",

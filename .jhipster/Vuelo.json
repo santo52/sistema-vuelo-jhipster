@@ -7,6 +7,12 @@
       "otherEntityName": "pasajeros",
       "relationshipType": "one-to-many",
       "otherEntityRelationshipName": "vuelo"
+    },
+    {
+      "relationshipName": "escala",
+      "otherEntityName": "escala",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "vuelo"
     }
   ],
   "fields": [

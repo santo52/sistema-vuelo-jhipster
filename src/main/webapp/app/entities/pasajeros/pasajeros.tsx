@@ -33,6 +33,8 @@ export const Pasajeros = (props: IPasajerosProps) => {
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
                 <th>Vuelo</th>
                 <th />
               </tr>
@@ -45,6 +47,8 @@ export const Pasajeros = (props: IPasajerosProps) => {
                       {pasajeros.id}
                     </Button>
                   </td>
+                  <td>{pasajeros.nombre}</td>
+                  <td>{pasajeros.apellidos}</td>
                   <td>{pasajeros.vuelo ? <Link to={`vuelo/${pasajeros.vuelo.id}`}>{pasajeros.vuelo.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

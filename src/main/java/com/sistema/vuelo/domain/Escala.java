@@ -1,5 +1,6 @@
 package com.sistema.vuelo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -34,6 +35,10 @@ public class Escala implements Serializable {
     @NotNull
     @Column(name = "suben_pasajeros", nullable = false)
     private String suben_pasajeros;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "escalas", allowSetters = true)
+    private Vuelo vuelo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -94,6 +99,19 @@ public class Escala implements Serializable {
 
     public void setSuben_pasajeros(String suben_pasajeros) {
         this.suben_pasajeros = suben_pasajeros;
+    }
+
+    public Vuelo getVuelo() {
+        return vuelo;
+    }
+
+    public Escala vuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
+        return this;
+    }
+
+    public void setVuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

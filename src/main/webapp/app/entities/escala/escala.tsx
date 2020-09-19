@@ -37,6 +37,7 @@ export const Escala = (props: IEscalaProps) => {
                 <th>Origen</th>
                 <th>Destino</th>
                 <th>Suben Pasajeros</th>
+                <th>Vuelo</th>
                 <th />
               </tr>
             </thead>
@@ -52,6 +53,7 @@ export const Escala = (props: IEscalaProps) => {
                   <td>{escala.origen}</td>
                   <td>{escala.destino}</td>
                   <td>{escala.suben_pasajeros}</td>
+                  <td>{escala.vuelo ? <Link to={`vuelo/${escala.vuelo.id}`}>{escala.vuelo.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${escala.id}`} color="info" size="sm">

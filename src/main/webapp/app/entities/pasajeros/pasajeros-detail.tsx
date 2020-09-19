@@ -25,6 +25,14 @@ export const PasajerosDetail = (props: IPasajerosDetailProps) => {
           Pasajeros [<b>{pasajerosEntity.id}</b>]
         </h2>
         <dl className="jh-entity-details">
+          <dt>
+            <span id="nombre">Nombre</span>
+          </dt>
+          <dd>{pasajerosEntity.nombre}</dd>
+          <dt>
+            <span id="apellidos">Apellidos</span>
+          </dt>
+          <dd>{pasajerosEntity.apellidos}</dd>
           <dt>Vuelo</dt>
           <dd>{pasajerosEntity.vuelo ? pasajerosEntity.vuelo.id : ''}</dd>
         </dl>

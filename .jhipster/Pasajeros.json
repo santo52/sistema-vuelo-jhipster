@@ -10,7 +10,16 @@
       "otherEntityRelationshipName": "pasajeros"
     }
   ],
-  "fields": [],
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellidos",
+      "fieldType": "String"
+    }
+  ],
   "changelogDate": "20200919155843",
   "dto": "no",
   "searchEngine": false,

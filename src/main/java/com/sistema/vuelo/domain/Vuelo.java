@@ -33,6 +33,9 @@ public class Vuelo implements Serializable {
     @OneToMany(mappedBy = "vuelo")
     private Set<Pasajeros> pasajeros = new HashSet<>();
 
+    @OneToMany(mappedBy = "vuelo")
+    private Set<Escala> escalas = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -91,6 +94,31 @@ public class Vuelo implements Serializable {
 
     public void setPasajeros(Set<Pasajeros> pasajeros) {
         this.pasajeros = pasajeros;
+    }
+
+    public Set<Escala> getEscalas() {
+        return escalas;
+    }
+
+    public Vuelo escalas(Set<Escala> escalas) {
+        this.escalas = escalas;
+        return this;
+    }
+
+    public Vuelo addEscala(Escala escala) {
+        this.escalas.add(escala);
+        escala.setVuelo(this);
+        return this;
+    }
+
+    public Vuelo removeEscala(Escala escala) {
+        this.escalas.remove(escala);
+        escala.setVuelo(null);
+        return this;
+    }
+
+    public void setEscalas(Set<Escala> escalas) {
+        this.escalas = escalas;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

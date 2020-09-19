@@ -29,6 +29,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class PasajerosResourceIT {
 
+    private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
+    private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_APELLIDOS = "AAAAAAAAAA";
+    private static final String UPDATED_APELLIDOS = "BBBBBBBBBB";
+
     @Autowired
     private PasajerosRepository pasajerosRepository;
 
@@ -47,7 +53,9 @@ public class PasajerosResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Pasajeros createEntity(EntityManager em) {
-        Pasajeros pasajeros = new Pasajeros();
+        Pasajeros pasajeros = new Pasajeros()
+            .nombre(DEFAULT_NOMBRE)
+            .apellidos(DEFAULT_APELLIDOS);
         return pasajeros;
     }
     /**
@@ -57,7 +65,9 @@ public class PasajerosResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Pasajeros createUpdatedEntity(EntityManager em) {
-        Pasajeros pasajeros = new Pasajeros();
+        Pasajeros pasajeros = new Pasajeros()
+            .nombre(UPDATED_NOMBRE)
+            .apellidos(UPDATED_APELLIDOS);
         return pasajeros;
     }
 
@@ -80,6 +90,8 @@ public class PasajerosResourceIT {
         List<Pasajeros> pasajerosList = pasajerosRepository.findAll();
         assertThat(pasajerosList).hasSize(databaseSizeBeforeCreate + 1);
         Pasajeros testPasajeros = pasajerosList.get(pasajerosList.size() - 1);
+        assertThat(testPasajeros.getNombre()).isEqualTo(DEFAULT_NOMBRE);
+        assertThat(testPasajeros.getApellidos()).isEqualTo(DEFAULT_APELLIDOS);
     }
 
     @Test
@@ -112,7 +124,9 @@ public class PasajerosResourceIT {
         restPasajerosMockMvc.perform(get("/api/pasajeros?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(pasajeros.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(pasajeros.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE)))
+            .andExpect(jsonPath("$.[*].apellidos").value(hasItem(DEFAULT_APELLIDOS)));
     }
     
     @Test
@@ -125,7 +139,9 @@ public class PasajerosResourceIT {
         restPasajerosMockMvc.perform(get("/api/pasajeros/{id}", pasajeros.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(pasajeros.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(pasajeros.getId().intValue()))
+            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE))
+            .andExpect(jsonPath("$.apellidos").value(DEFAULT_APELLIDOS));
     }
     @Test
     @Transactional
@@ -147,6 +163,9 @@ public class PasajerosResourceIT {
         Pasajeros updatedPasajeros = pasajerosRepository.findById(pasajeros.getId()).get();
         // Disconnect from session so that the updates on updatedPasajeros are not directly saved in db
         em.detach(updatedPasajeros);
+        updatedPasajeros
+            .nombre(UPDATED_NOMBRE)
+            .apellidos(UPDATED_APELLIDOS);
 
         restPasajerosMockMvc.perform(put("/api/pasajeros")
             .contentType(MediaType.APPLICATION_JSON)
@@ -157,6 +176,8 @@ public class PasajerosResourceIT {
         List<Pasajeros> pasajerosList = pasajerosRepository.findAll();
         assertThat(pasajerosList).hasSize(databaseSizeBeforeUpdate);
         Pasajeros testPasajeros = pasajerosList.get(pasajerosList.size() - 1);
+        assertThat(testPasajeros.getNombre()).isEqualTo(UPDATED_NOMBRE);
+        assertThat(testPasajeros.getApellidos()).isEqualTo(UPDATED_APELLIDOS);
     }
 
     @Test

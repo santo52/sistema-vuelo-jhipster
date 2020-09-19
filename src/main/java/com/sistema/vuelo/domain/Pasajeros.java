@@ -19,6 +19,12 @@ public class Pasajeros implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "apellidos")
+    private String apellidos;
+
     @ManyToOne
     @JsonIgnoreProperties(value = "pasajeros", allowSetters = true)
     private Vuelo vuelo;
@@ -30,6 +36,32 @@ public class Pasajeros implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Pasajeros nombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public Pasajeros apellidos(String apellidos) {
+        this.apellidos = apellidos;
+        return this;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public Vuelo getVuelo() {
@@ -67,6 +99,8 @@ public class Pasajeros implements Serializable {
     public String toString() {
         return "Pasajeros{" +
             "id=" + getId() +
+            ", nombre='" + getNombre() + "'" +
+            ", apellidos='" + getApellidos() + "'" +
             "}";
     }
 }

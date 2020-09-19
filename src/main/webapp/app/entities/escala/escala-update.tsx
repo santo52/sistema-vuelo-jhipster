@@ -7,6 +7,8 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IVuelo } from 'app/shared/model/vuelo.model';
+import { getEntities as getVuelos } from 'app/entities/vuelo/vuelo.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './escala.reducer';
 import { IEscala } from 'app/shared/model/escala.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -15,9 +17,10 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IEscalaUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const EscalaUpdate = (props: IEscalaUpdateProps) => {
+  const [vueloId, setVueloId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { escalaEntity, loading, updating } = props;
+  const { escalaEntity, vuelos, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/escala');
@@ -29,6 +32,8 @@ export const EscalaUpdate = (props: IEscalaUpdateProps) => {
     } else {
       props.getEntity(props.match.params.id);
     }
+
+    props.getVuelos();
   }, []);
 
   useEffect(() => {
@@ -125,6 +130,19 @@ export const EscalaUpdate = (props: IEscalaUpdateProps) => {
                   }}
                 />
               </AvGroup>
+              <AvGroup>
+                <Label for="escala-vuelo">Vuelo</Label>
+                <AvInput id="escala-vuelo" type="select" className="form-control" name="vuelo.id">
+                  <option value="" key="0" />
+                  {vuelos
+                    ? vuelos.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.id}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
+              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/escala" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
@@ -144,6 +162,7 @@ export const EscalaUpdate = (props: IEscalaUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
+  vuelos: storeState.vuelo.entities,
   escalaEntity: storeState.escala.entity,
   loading: storeState.escala.loading,
   updating: storeState.escala.updating,
@@ -151,6 +170,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getVuelos,
   getEntity,
   updateEntity,
   createEntity,
