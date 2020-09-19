@@ -8,6 +8,13 @@
       "relationshipType": "many-to-many",
       "ownerSide": false,
       "otherEntityRelationshipName": "aeropuerto"
+    },
+    {
+      "relationshipName": "programavuelo",
+      "otherEntityName": "programavuelo",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "aeropuerto"
     }
   ],
   "fields": [

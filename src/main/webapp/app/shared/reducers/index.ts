@@ -32,6 +32,7 @@ import pasajeros, {
 import escala, {
   EscalaState
 } from 'app/entities/escala/escala.reducer';
+import programavuelo, { ProgramavueloState } from 'app/entities/programavuelo/programavuelo.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -49,6 +50,7 @@ export interface IRootState {
   readonly avion: AvionState;
   readonly pasajeros: PasajerosState;
   readonly escala: EscalaState;
+  readonly programavuelo: ProgramavueloState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -68,6 +70,7 @@ const rootReducer = combineReducers<IRootState>({
   avion,
   pasajeros,
   escala,
+  programavuelo,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

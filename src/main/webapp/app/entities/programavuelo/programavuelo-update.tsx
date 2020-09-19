@@ -7,26 +7,23 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { IAvion } from 'app/shared/model/avion.model';
-import { getEntities as getAvions } from 'app/entities/avion/avion.reducer';
+import { IVuelo } from 'app/shared/model/vuelo.model';
+import { getEntities as getVuelos } from 'app/entities/vuelo/vuelo.reducer';
+import { getEntity, updateEntity, createEntity, reset } from './programavuelo.reducer';
 import { IProgramavuelo } from 'app/shared/model/programavuelo.model';
-import { getEntities as getProgramavuelos } from 'app/entities/programavuelo/programavuelo.reducer';
-import { getEntity, updateEntity, createEntity, reset } from './aeropuerto.reducer';
-import { IAeropuerto } from 'app/shared/model/aeropuerto.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
-export interface IAeropuertoUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
+export interface IProgramavueloUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
-export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
-  const [avionId, setAvionId] = useState('0');
-  const [programavueloId, setProgramavueloId] = useState('0');
+export const ProgramavueloUpdate = (props: IProgramavueloUpdateProps) => {
+  const [vueloId, setVueloId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { aeropuertoEntity, avions, programavuelos, loading, updating } = props;
+  const { programavueloEntity, vuelos, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/aeropuerto');
+    props.history.push('/programavuelo');
   };
 
   useEffect(() => {
@@ -36,8 +33,7 @@ export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
       props.getEntity(props.match.params.id);
     }
 
-    props.getAvions();
-    props.getProgramavuelos();
+    props.getVuelos();
   }, []);
 
   useEffect(() => {
@@ -49,7 +45,7 @@ export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
   const saveEntity = (event, errors, values) => {
     if (errors.length === 0) {
       const entity = {
-        ...aeropuertoEntity,
+        ...programavueloEntity,
         ...values,
       };
 
@@ -65,7 +61,7 @@ export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="sistemavuelosApp.aeropuerto.home.createOrEditLabel">Create or edit a Aeropuerto</h2>
+          <h2 id="sistemavuelosApp.programavuelo.home.createOrEditLabel">Create or edit a Programavuelo</h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
@@ -73,22 +69,35 @@ export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <AvForm model={isNew ? {} : aeropuertoEntity} onSubmit={saveEntity}>
+            <AvForm model={isNew ? {} : programavueloEntity} onSubmit={saveEntity}>
               {!isNew ? (
                 <AvGroup>
-                  <Label for="aeropuerto-id">ID</Label>
-                  <AvInput id="aeropuerto-id" type="text" className="form-control" name="id" required readOnly />
+                  <Label for="programavuelo-id">ID</Label>
+                  <AvInput id="programavuelo-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
               <AvGroup>
-                <Label id="codigoLabel" for="aeropuerto-codigo">
-                  Codigo
+                <Label id="escalaLabel" for="programavuelo-escala">
+                  Escala
                 </Label>
                 <AvField
-                  id="aeropuerto-codigo"
+                  id="programavuelo-escala"
+                  type="text"
+                  name="escala"
+                  validate={{
+                    required: { value: true, errorMessage: 'This field is required.' },
+                  }}
+                />
+              </AvGroup>
+              <AvGroup>
+                <Label id="idprogramaLabel" for="programavuelo-idprograma">
+                  Idprograma
+                </Label>
+                <AvField
+                  id="programavuelo-idprograma"
                   type="string"
                   className="form-control"
-                  name="codigo"
+                  name="idprograma"
                   validate={{
                     required: { value: true, errorMessage: 'This field is required.' },
                     number: { value: true, errorMessage: 'This field should be a number.' },
@@ -96,58 +105,46 @@ export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
                 />
               </AvGroup>
               <AvGroup>
-                <Label id="nombreLabel" for="aeropuerto-nombre">
-                  Nombre
+                <Label id="lineaLabel" for="programavuelo-linea">
+                  Linea
                 </Label>
                 <AvField
-                  id="aeropuerto-nombre"
+                  id="programavuelo-linea"
                   type="text"
-                  name="nombre"
+                  name="linea"
                   validate={{
                     required: { value: true, errorMessage: 'This field is required.' },
                   }}
                 />
               </AvGroup>
               <AvGroup>
-                <Label id="ciudadLabel" for="aeropuerto-ciudad">
-                  Ciudad
+                <Label id="diasLabel" for="programavuelo-dias">
+                  Dias
                 </Label>
                 <AvField
-                  id="aeropuerto-ciudad"
-                  type="text"
-                  name="ciudad"
+                  id="programavuelo-dias"
+                  type="date"
+                  className="form-control"
+                  name="dias"
                   validate={{
                     required: { value: true, errorMessage: 'This field is required.' },
                   }}
                 />
               </AvGroup>
               <AvGroup>
-                <Label id="paisLabel" for="aeropuerto-pais">
-                  Pais
-                </Label>
-                <AvField
-                  id="aeropuerto-pais"
-                  type="text"
-                  name="pais"
-                  validate={{
-                    required: { value: true, errorMessage: 'This field is required.' },
-                  }}
-                />
-              </AvGroup>
-              <AvGroup>
-                <Label for="aeropuerto-programavuelo">Programavuelo</Label>
-                <AvInput id="aeropuerto-programavuelo" type="select" className="form-control" name="programavuelo.id">
+                <Label for="programavuelo-vuelo">Vuelo</Label>
+                <AvInput id="programavuelo-vuelo" type="select" className="form-control" name="vuelo.id">
                   <option value="" key="0" />
-                  {programavuelos
-                    ? programavuelos.map(otherEntity => (
+                  {vuelos
+                    ? vuelos.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.idprograma} - linea: {otherEntity.linea} - escala: {otherEntity.escala}
+                          {otherEntity.id}
                         </option>
                       ))
                     : null}
                 </AvInput>
               </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/aeropuerto" replace color="info">
+              <Button tag={Link} id="cancel-save" to="/programavuelo" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">Back</span>
@@ -166,17 +163,15 @@ export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
-  avions: storeState.avion.entities,
-  programavuelos: storeState.programavuelo.entities,
-  aeropuertoEntity: storeState.aeropuerto.entity,
-  loading: storeState.aeropuerto.loading,
-  updating: storeState.aeropuerto.updating,
-  updateSuccess: storeState.aeropuerto.updateSuccess,
+  vuelos: storeState.vuelo.entities,
+  programavueloEntity: storeState.programavuelo.entity,
+  loading: storeState.programavuelo.loading,
+  updating: storeState.programavuelo.updating,
+  updateSuccess: storeState.programavuelo.updateSuccess,
 });
 
 const mapDispatchToProps = {
-  getAvions,
-  getProgramavuelos,
+  getVuelos,
   getEntity,
   updateEntity,
   createEntity,
@@ -186,4 +181,4 @@ const mapDispatchToProps = {
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-export default connect(mapStateToProps, mapDispatchToProps)(AeropuertoUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramavueloUpdate);

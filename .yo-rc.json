@@ -35,6 +35,9 @@
     "otherModules": [],
     "enableTranslation": false,
     "blueprints": [],
-    "lastLiquibaseTimestamp": 1600536997000
+    "herokuAppName": "sistemavuelos",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "14",
+    "lastLiquibaseTimestamp": 1600533930000
   }
 }
