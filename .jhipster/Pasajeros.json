@@ -1,0 +1,23 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "vuelo",
+      "otherEntityName": "vuelo",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "pasajeros"
+    }
+  ],
+  "fields": [],
+  "changelogDate": "20200919155843",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "no",
+  "entityTableName": "pasajeros",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no"
+}

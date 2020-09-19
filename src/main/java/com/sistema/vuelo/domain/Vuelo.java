@@ -6,6 +6,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Vuelo.
@@ -27,6 +29,9 @@ public class Vuelo implements Serializable {
     @NotNull
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
+
+    @OneToMany(mappedBy = "vuelo")
+    private Set<Pasajeros> pasajeros = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -61,6 +66,31 @@ public class Vuelo implements Serializable {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public Set<Pasajeros> getPasajeros() {
+        return pasajeros;
+    }
+
+    public Vuelo pasajeros(Set<Pasajeros> pasajeros) {
+        this.pasajeros = pasajeros;
+        return this;
+    }
+
+    public Vuelo addPasajeros(Pasajeros pasajeros) {
+        this.pasajeros.add(pasajeros);
+        pasajeros.setVuelo(this);
+        return this;
+    }
+
+    public Vuelo removePasajeros(Pasajeros pasajeros) {
+        this.pasajeros.remove(pasajeros);
+        pasajeros.setVuelo(null);
+        return this;
+    }
+
+    public void setPasajeros(Set<Pasajeros> pasajeros) {
+        this.pasajeros = pasajeros;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

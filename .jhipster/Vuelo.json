@@ -1,7 +1,14 @@
 {
   "fluentMethods": true,
   "clientRootFolder": "",
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipName": "pasajeros",
+      "otherEntityName": "pasajeros",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "vuelo"
+    }
+  ],
   "fields": [
     {
       "fieldName": "idvuelo",
