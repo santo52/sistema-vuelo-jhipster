@@ -1,6 +1,5 @@
 package com.sistema.vuelo.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -38,8 +37,10 @@ public class Avion implements Serializable {
     @Column(name = "modelo", nullable = false)
     private String modelo;
 
-    @ManyToMany(mappedBy = "avions")
-    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "avion_aeropuerto",
+               joinColumns = @JoinColumn(name = "avion_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "aeropuerto_id", referencedColumnName = "id"))
     private Set<Aeropuerto> aeropuertos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

@@ -41,6 +41,17 @@ export const AvionDetail = (props: IAvionDetailProps) => {
             <span id="modelo">Modelo</span>
           </dt>
           <dd>{avionEntity.modelo}</dd>
+          <dt>Aeropuerto</dt>
+          <dd>
+            {avionEntity.aeropuertos
+              ? avionEntity.aeropuertos.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.id}</a>
+                    {avionEntity.aeropuertos && i === avionEntity.aeropuertos.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/avion" replace color="info">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

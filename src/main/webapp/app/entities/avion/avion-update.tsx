@@ -17,7 +17,7 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IAvionUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const AvionUpdate = (props: IAvionUpdateProps) => {
-  const [aeropuertoId, setAeropuertoId] = useState('0');
+  const [idsaeropuerto, setIdsaeropuerto] = useState([]);
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const { avionEntity, aeropuertos, loading, updating } = props;
@@ -47,6 +47,7 @@ export const AvionUpdate = (props: IAvionUpdateProps) => {
       const entity = {
         ...avionEntity,
         ...values,
+        aeropuertos: mapIdList(values.aeropuertos),
       };
 
       if (isNew) {
@@ -129,6 +130,26 @@ export const AvionUpdate = (props: IAvionUpdateProps) => {
                     required: { value: true, errorMessage: 'This field is required.' },
                   }}
                 />
+              </AvGroup>
+              <AvGroup>
+                <Label for="avion-aeropuerto">Aeropuerto</Label>
+                <AvInput
+                  id="avion-aeropuerto"
+                  type="select"
+                  multiple
+                  className="form-control"
+                  name="aeropuertos"
+                  value={avionEntity.aeropuertos && avionEntity.aeropuertos.map(e => e.id)}
+                >
+                  <option value="" key="0" />
+                  {aeropuertos
+                    ? aeropuertos.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.id}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/avion" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />

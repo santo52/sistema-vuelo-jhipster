@@ -20,7 +20,10 @@ import aeropuerto, {
 import vuelo, {
   VueloState
 } from 'app/entities/vuelo/vuelo.reducer';
-import avion, { AvionState } from 'app/entities/avion/avion.reducer';
+// prettier-ignore
+import avion, {
+  AvionState
+} from 'app/entities/avion/avion.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {

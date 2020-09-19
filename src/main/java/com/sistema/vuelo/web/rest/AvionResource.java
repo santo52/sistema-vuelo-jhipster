@@ -83,12 +83,13 @@ public class AvionResource {
     /**
      * {@code GET  /avions} : get all the avions.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of avions in body.
      */
     @GetMapping("/avions")
-    public List<Avion> getAllAvions() {
+    public List<Avion> getAllAvions(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all Avions");
-        return avionRepository.findAll();
+        return avionRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -100,7 +101,7 @@ public class AvionResource {
     @GetMapping("/avions/{id}")
     public ResponseEntity<Avion> getAvion(@PathVariable Long id) {
         log.debug("REST request to get Avion : {}", id);
-        Optional<Avion> avion = avionRepository.findById(id);
+        Optional<Avion> avion = avionRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(avion);
     }
 

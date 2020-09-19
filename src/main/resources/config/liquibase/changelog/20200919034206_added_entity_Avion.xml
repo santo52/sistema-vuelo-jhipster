@@ -34,6 +34,17 @@
 
     <changeSet id="20200919034206-1-relations" author="jhipster">
 
+        <createTable tableName="avion_aeropuerto">
+            <column name="aeropuerto_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avion_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="avion_id, aeropuerto_id" tableName="avion_aeropuerto"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 

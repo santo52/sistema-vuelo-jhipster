@@ -37,6 +37,7 @@ export const Avion = (props: IAvionProps) => {
                 <th>Marca</th>
                 <th>Capacidad</th>
                 <th>Modelo</th>
+                <th>Aeropuerto</th>
                 <th />
               </tr>
             </thead>
@@ -52,6 +53,16 @@ export const Avion = (props: IAvionProps) => {
                   <td>{avion.marca}</td>
                   <td>{avion.capacidad}</td>
                   <td>{avion.modelo}</td>
+                  <td>
+                    {avion.aeropuertos
+                      ? avion.aeropuertos.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`aeropuerto/${val.id}`}>{val.id}</Link>
+                            {j === avion.aeropuertos.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
+                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${avion.id}`} color="info" size="sm">
