@@ -7,7 +7,7 @@ import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import Aeropuerto from './aeropuerto';
 import Vuelo from './vuelo';
 import Avion from './avion';
-
+const Routes = ({ match }) => (
   <div>
     <Switch>
       {/* prettier-ignore */}

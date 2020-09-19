@@ -7,6 +7,8 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IAvion } from 'app/shared/model/avion.model';
+import { getEntities as getAvions } from 'app/entities/avion/avion.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './aeropuerto.reducer';
 import { IAeropuerto } from 'app/shared/model/aeropuerto.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -15,9 +17,10 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IAeropuertoUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
+  const [avionId, setAvionId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { aeropuertoEntity, loading, updating } = props;
+  const { aeropuertoEntity, avions, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/aeropuerto');
@@ -29,6 +32,8 @@ export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
     } else {
       props.getEntity(props.match.params.id);
     }
+
+    props.getAvions();
   }, []);
 
   useEffect(() => {
@@ -144,6 +149,7 @@ export const AeropuertoUpdate = (props: IAeropuertoUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
+  avions: storeState.avion.entities,
   aeropuertoEntity: storeState.aeropuerto.entity,
   loading: storeState.aeropuerto.loading,
   updating: storeState.aeropuerto.updating,
@@ -151,6 +157,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getAvions,
   getEntity,
   updateEntity,
   createEntity,

@@ -1,10 +1,13 @@
 package com.sistema.vuelo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Aeropuerto.
@@ -34,6 +37,10 @@ public class Aeropuerto implements Serializable {
     @NotNull
     @Column(name = "pais", nullable = false)
     private String pais;
+
+    @ManyToMany(mappedBy = "aeropuertos")
+    @JsonIgnore
+    private Set<Avion> avions = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -94,6 +101,31 @@ public class Aeropuerto implements Serializable {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    public Set<Avion> getAvions() {
+        return avions;
+    }
+
+    public Aeropuerto avions(Set<Avion> avions) {
+        this.avions = avions;
+        return this;
+    }
+
+    public Aeropuerto addAvion(Avion avion) {
+        this.avions.add(avion);
+        avion.getAeropuertos().add(this);
+        return this;
+    }
+
+    public Aeropuerto removeAvion(Avion avion) {
+        this.avions.remove(avion);
+        avion.getAeropuertos().remove(this);
+        return this;
+    }
+
+    public void setAvions(Set<Avion> avions) {
+        this.avions = avions;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
