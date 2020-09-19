@@ -24,7 +24,7 @@ export const Aeropuerto = (props: IAeropuertoProps) => {
         Aeropuertos
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
-          &nbsp; Crear nuevo Aeropuerto
+          &nbsp; Create new Aeropuerto
         </Link>
       </h2>
       <div className="table-responsive">
@@ -37,6 +37,7 @@ export const Aeropuerto = (props: IAeropuertoProps) => {
                 <th>Nombre</th>
                 <th>Ciudad</th>
                 <th>Pais</th>
+                <th>Programavuelo</th>
                 <th />
               </tr>
             </thead>
@@ -52,6 +53,13 @@ export const Aeropuerto = (props: IAeropuertoProps) => {
                   <td>{aeropuerto.nombre}</td>
                   <td>{aeropuerto.ciudad}</td>
                   <td>{aeropuerto.pais}</td>
+                  <td>
+                    {aeropuerto.programavuelo ? (
+                      <Link to={`programavuelo/${aeropuerto.programavuelo.id}`}>{aeropuerto.programavuelo.id}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${aeropuerto.id}`} color="info" size="sm">

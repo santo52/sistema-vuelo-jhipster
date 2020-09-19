@@ -41,6 +41,8 @@ export const AeropuertoDetail = (props: IAeropuertoDetailProps) => {
             <span id="pais">Pais</span>
           </dt>
           <dd>{aeropuertoEntity.pais}</dd>
+          <dt>Programavuelo</dt>
+          <dd>{aeropuertoEntity.programavuelo ? aeropuertoEntity.programavuelo.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/aeropuerto" replace color="info">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

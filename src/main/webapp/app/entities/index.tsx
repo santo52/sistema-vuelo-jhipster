@@ -7,6 +7,7 @@ import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import Aeropuerto from './aeropuerto';
 import Vuelo from './vuelo';
 import Avion from './avion';
+import Programavuelo from './programavuelo';
 import Pasajeros from './pasajeros';
 const Routes = ({ match }) => (
   <div>
@@ -16,6 +17,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}vuelo`} component={Vuelo} />
       <ErrorBoundaryRoute path={`${match.url}avion`} component={Avion} />
       <ErrorBoundaryRoute path={`${match.url}pasajeros`} component={Pasajeros} />
+      <ErrorBoundaryRoute path={`${match.url}programavuelo`} component={Programavuelo} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

@@ -28,6 +28,10 @@ import avion, {
 import pasajeros, {
   PasajerosState
 } from 'app/entities/pasajeros/pasajeros.reducer';
+// prettier-ignore
+import programavuelo, {
+  ProgramavueloState
+} from 'app/entities/programavuelo/programavuelo.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -44,6 +48,7 @@ export interface IRootState {
   readonly vuelo: VueloState;
   readonly avion: AvionState;
   readonly pasajeros: PasajerosState;
+  readonly programavuelo: ProgramavueloState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -62,6 +67,7 @@ const rootReducer = combineReducers<IRootState>({
   vuelo,
   avion,
   pasajeros,
+  programavuelo,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

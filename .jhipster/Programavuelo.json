@@ -1,0 +1,50 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "vuelo",
+      "otherEntityName": "vuelo",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "programavuelo"
+    },
+    {
+      "relationshipName": "aeropuerto",
+      "otherEntityName": "aeropuerto",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "programavuelo"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "escala",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "idprograma",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "linea",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dias",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "changelogDate": "20200919164530",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "no",
+  "entityTableName": "programavuelo",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no"
+}
