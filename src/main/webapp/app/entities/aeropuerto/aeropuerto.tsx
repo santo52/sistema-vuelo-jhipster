@@ -24,7 +24,7 @@ export const Aeropuerto = (props: IAeropuertoProps) => {
         Aeropuertos
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
-          &nbsp; Create new Aeropuerto
+          &nbsp; Crear nuevo Aeropuerto
         </Link>
       </h2>
       <div className="table-responsive">

@@ -24,7 +24,7 @@ export const Avion = (props: IAvionProps) => {
         Avions
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
-          &nbsp; Create new Avion
+          &nbsp; Crear nuevo Avion
         </Link>
       </h2>
       <div className="table-responsive">

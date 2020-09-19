@@ -141,11 +141,11 @@ export const AvionUpdate = (props: IAvionUpdateProps) => {
                   name="aeropuertos"
                   value={avionEntity.aeropuertos && avionEntity.aeropuertos.map(e => e.id)}
                 >
-                  <option value="" key="0" />
+                  <option value="" key="0">Seleccionar ...</option>
                   {aeropuertos
                     ? aeropuertos.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
+                          {otherEntity.nombre}
                         </option>
                       ))
                     : null}
