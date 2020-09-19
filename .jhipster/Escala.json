@@ -1,0 +1,36 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "id_escala",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "origen",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "destino",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "suben_pasajeros",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "changelogDate": "20200919173637",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "no",
+  "entityTableName": "escala",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no"
+}
