@@ -18,11 +18,8 @@
     <include file="config/liquibase/changelog/20200919040153_added_entity_Vuelo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200919034206_added_entity_Avion.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200919155843_added_entity_Pasajeros.xml" relativeToChangelogFile="false"/>
-<<<<<<< HEAD
     <include file="config/liquibase/changelog/20200919173637_added_entity_Escala.xml" relativeToChangelogFile="false"/>
-=======
     <include file="config/liquibase/changelog/20200919164530_added_entity_Programavuelo.xml" relativeToChangelogFile="false"/>
->>>>>>> 5a66fe54c0da73fd0f2b900632f17561486c5f33
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200919034206_added_entity_constraints_Avion.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200919155843_added_entity_constraints_Pasajeros.xml" relativeToChangelogFile="false"/>
